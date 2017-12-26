@@ -2,9 +2,13 @@ language: java
 sudo: false
 jdk:
   - oraclejdk8
-install: ./gradlew check
+  
+before_script:
+ - psql -c 'create database demo;' -U postgres
+#install: ./gradlew check
 deploy:
   provider: heroku
   api-key: 
     secure: $HEROKU_API_KEY
-  app: tmpchatbot
+  app: 
+    master: tmpchatbot
